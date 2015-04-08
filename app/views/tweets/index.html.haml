@@ -1,0 +1,27 @@
+<img src="140" alt="140" class="img-circle">
+
+
+%h1 vistulat twt
+.row
+  .col-lg-3
+    tweets
+    %br
+    =@user_email
+    %br
+    =@user_id
+  .col-lg-6
+    %h1 what's on your mind?
+    .add-tweet
+      = simple_form_for @tweet do |f|
+        = f.input :content
+        .pull-right
+          = f.button :submit, 'tweet', class: 'btn btn-success'
+    %h1 all tweets
+    - @tweets.each do |tweet|
+      .tweet
+        = tweet.content
+        = ' - '
+        = tweet.user_id
+  .col-lg-3
+    right
+    =link_to('logout', destroy_user_session_path, :method => :delete, class: 'btn-btn-danger')
